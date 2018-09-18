@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import CardItem from '../Home/components/CardItem';
 
-const renderCards = (addFavorites, { teams }) => {
+const renderCards = (addFavorites, { teams }, favoriteId) => {
   return teams.map(items => {
     const userId = localStorage.getItem('userId');
     let hasFavorited = false;
@@ -17,18 +17,21 @@ const renderCards = (addFavorites, { teams }) => {
     } else {
       progress = ['completed', 'completed-bg'];
     }
-    items.teams.map(teamUser => {
-      if (teamUser.userId === userId) {
+    favoriteId.forEach(team => {
+      if (team.teamId === items.id && team.userId === userId) {
         hasFavorited = true;
       }
-    });
+    })
+    // if (items.id === favoriteId.teamId && userId === favoriteId.userId) {
+    //   hasFavorited = true;
+    // }
     return (
       <React.Fragment key={items.id}>
         <CardItem
           item={items}
           favorite={favorite}
           addFavorites={addFavorites}
-          isFavorited={hasFavorited}
+          isFavorited={items.favoritedByYou || hasFavorited}
           lock={lock}
           toolTip={toolTip}
           progressBar={progress}
