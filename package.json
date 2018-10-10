@@ -9,12 +9,14 @@
   "scripts": {
     "heroku-postbuild": "webpack --config webpack.prod.js --progress",
     "build": "webpack",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "start": "node --require babel-register index.js",
     "start:dev": "nodemon --require babel-register index.js",
     "dev": "webpack-dev-server --config webpack.config.dev.js --port 8081",
     "lint": "./node_modules/.bin/eslint *.js",
     "start:server": "npx json-server --watch db.json",
-    "test": "jest -u"
+    "test": "jest -u",
+    "test:dev": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -38,7 +40,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-pure-class-to-function": "^1.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
+    "coveralls": "^3.0.2",
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^4.19.1",
