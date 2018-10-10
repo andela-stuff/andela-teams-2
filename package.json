@@ -14,7 +14,8 @@
     "dev": "webpack-dev-server --config webpack.config.dev.js --port 8081",
     "lint": "./node_modules/.bin/eslint *.js",
     "start:server": "npx json-server --watch db.json",
-    "test": "jest -u"
+    "test": "jest -u",
+    "test:dev": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -88,6 +89,7 @@
     "react-modal": "^3.5.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-select": "^2.1.0",
     "react-toastify": "^4.0.1",
     "react-tooltip": "^3.5.0",
     "reactjs-mappletooltip": "^1.4.63",
