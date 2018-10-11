@@ -74,7 +74,8 @@ export class InviteMember extends Component {
     if (!this.state.ismultiSelectDisabled && this.state.selectAllDisabled) {
       const { accounts } = this.state;
       console.log(accounts);
-    } else if (this.state.ismultiSelectDisabled && !this.state.selectAllDisabled) {
+    } else if (
+      this.state.ismultiSelectDisabled && !this.state.selectAllDisabled) {
     // const { addMember } = this.props;
     }
   }
