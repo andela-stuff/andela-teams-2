@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Google Button Component test /> should mount without crashing 1`] = `
+<t
+  accessType="online"
+  buttonText="Login with Google"
+  className="btn waves-effect waves-yellow white-btn"
+  cookiePolicy="single_host_origin"
+  disabledStyle={
+    Object {
+      "opacity": 0.6,
+    }
+  }
+  fetchBasicProfile={true}
+  isSignedIn={false}
+  jsSrc="https://apis.google.com/js/client:platform.js"
+  onFailure={[MockFunction]}
+  onRequest={[Function]}
+  onSuccess={[MockFunction]}
+  prompt=""
+  scope="profile email"
+  tag="button"
+  type="button"
+  uxMode="popup"
+>
+  <img
+    alt="google logo"
+    className="logo"
+    src="/resources/images/google.svg"
+  />
+  <span
+    className="btn-divider"
+  />
+  <span>
+     Login with Google
+  </span>
+</t>
+`;

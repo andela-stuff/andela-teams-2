@@ -1,0 +1,695 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Test Component /> Radio button should respond to an onClick event 1`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="col s12"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-field inline col s11 custom-form search-result"
+        >
+          <i
+            className="material-icons prefix"
+          >
+            search
+          </i>
+          <input
+            autoComplete="off"
+            id="invite-members"
+            onChange={[Function]}
+            placeholder="Invite members"
+            type="search"
+            value="kevin"
+          />
+          <span
+            className="helper-text user-placeholder"
+          >
+            search by username or email
+          </span>
+          <div
+            className="user-placeholder undefined"
+          >
+            <label
+              onClick={[Function]}
+              role="button"
+            >
+              <img
+                alt="user"
+                className="search-img"
+              />
+              <label
+                className="user-label"
+              >
+                eze kevin
+                 &lt;
+                eze.kevin@andela.com
+                &gt;
+              </label>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ReactTooltip
+    insecure={true}
+    resizeHide={true}
+    wrapper="div"
+  />
+  <div
+    className="row account-row"
+  >
+    <div
+      className="col s2"
+    />
+    <div
+      className="col s7"
+    >
+      <h5
+        className="center-align"
+      >
+        Add
+        <span
+          className="member-username"
+        >
+           kevin
+        </span>
+         to any of these tools
+      </h5>
+      <div
+        className="col s12 team-account-wrapper"
+      >
+        <form
+          className="row team-accout-form"
+        >
+          <div
+            className=""
+          >
+            <label>
+              <input
+                className="with-gap select-all"
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span>
+                <img
+                  alt="icon"
+                  height="30px"
+                  src="/resources/images/select.png"
+                  width="30px"
+                />
+              </span>
+            </label>
+            <span
+              className="span"
+            >
+              Add user to all accounts
+            </span>
+          </div>
+          <br />
+          <div>
+            <label>
+              <input
+                className="with-gap select-some"
+                defaultChecked={true}
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span />
+              <label
+                className="select"
+              >
+                <StateManager
+                  closeMenuOnSelect={false}
+                  components={
+                    Object {
+                      "MultiValueLabel": [Function],
+                      "Option": [Function],
+                    }
+                  }
+                  defaultInputValue=""
+                  defaultMenuIsOpen={false}
+                  defaultValue={
+                    Array [
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                    ]
+                  }
+                  isDisabled={true}
+                  isMulti={true}
+                  onChange={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "label": "ah-tap",
+                        "type": "github_repo",
+                        "value": "ah-tap",
+                      },
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                      Object {
+                        "label": "Ghoullies-taps",
+                        "type": "pt_project",
+                        "value": "Ghoullies-taps",
+                      },
+                    ]
+                  }
+                  styles={
+                    Object {
+                      "multiValueRemove": [Function],
+                    }
+                  }
+                />
+              </label>
+            </label>
+          </div>
+          <button
+            className="btn account-btn"
+            name="action"
+            onClick={[Function]}
+            type="submit"
+          >
+            Invite
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      className="col s3"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`<Test Component /> Radio button should respond to an onClick event 2`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="col s12"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-field inline col s11 custom-form search-result"
+        >
+          <i
+            className="material-icons prefix"
+          >
+            search
+          </i>
+          <input
+            autoComplete="off"
+            id="invite-members"
+            onChange={[Function]}
+            placeholder="Invite members"
+            type="search"
+            value="kevin"
+          />
+          <span
+            className="helper-text user-placeholder"
+          >
+            search by username or email
+          </span>
+          <div
+            className="user-placeholder undefined"
+          >
+            <label
+              onClick={[Function]}
+              role="button"
+            >
+              <img
+                alt="user"
+                className="search-img"
+              />
+              <label
+                className="user-label"
+              >
+                eze kevin
+                 &lt;
+                eze.kevin@andela.com
+                &gt;
+              </label>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ReactTooltip
+    insecure={true}
+    resizeHide={true}
+    wrapper="div"
+  />
+  <div
+    className="row account-row"
+  >
+    <div
+      className="col s2"
+    />
+    <div
+      className="col s7"
+    >
+      <h5
+        className="center-align"
+      >
+        Add
+        <span
+          className="member-username"
+        >
+           kevin
+        </span>
+         to any of these tools
+      </h5>
+      <div
+        className="col s12 team-account-wrapper"
+      >
+        <form
+          className="row team-accout-form"
+        >
+          <div
+            className=""
+          >
+            <label>
+              <input
+                className="with-gap select-all"
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span>
+                <img
+                  alt="icon"
+                  height="30px"
+                  src="/resources/images/select.png"
+                  width="30px"
+                />
+              </span>
+            </label>
+            <span
+              className="span"
+            >
+              Add user to all accounts
+            </span>
+          </div>
+          <br />
+          <div>
+            <label>
+              <input
+                className="with-gap select-some"
+                defaultChecked={true}
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span />
+              <label
+                className="select"
+              >
+                <StateManager
+                  closeMenuOnSelect={false}
+                  components={
+                    Object {
+                      "MultiValueLabel": [Function],
+                      "Option": [Function],
+                    }
+                  }
+                  defaultInputValue=""
+                  defaultMenuIsOpen={false}
+                  defaultValue={
+                    Array [
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                    ]
+                  }
+                  isDisabled={false}
+                  isMulti={true}
+                  onChange={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "label": "ah-tap",
+                        "type": "github_repo",
+                        "value": "ah-tap",
+                      },
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                      Object {
+                        "label": "Ghoullies-taps",
+                        "type": "pt_project",
+                        "value": "Ghoullies-taps",
+                      },
+                    ]
+                  }
+                  styles={
+                    Object {
+                      "multiValueRemove": [Function],
+                    }
+                  }
+                />
+              </label>
+            </label>
+          </div>
+          <button
+            className="btn account-btn"
+            name="action"
+            onClick={[Function]}
+            type="submit"
+          >
+            Invite
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      className="col s3"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`<Test Component /> Should respond to an onChange event of search input 1`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="col s12"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-field inline col s11 custom-form search-result"
+        >
+          <i
+            className="material-icons prefix"
+          >
+            search
+          </i>
+          <input
+            autoComplete="off"
+            id="invite-members"
+            onChange={[Function]}
+            placeholder="Invite members"
+            type="search"
+            value="kevin"
+          />
+          <span
+            className="helper-text user-placeholder"
+          >
+            search by username or email
+          </span>
+          <div
+            className="user-placeholder undefined"
+          >
+            <label
+              onClick={[Function]}
+              role="button"
+            >
+              <img
+                alt="user"
+                className="search-img"
+              />
+              <label
+                className="user-label"
+              >
+                eze kevin
+                 &lt;
+                eze.kevin@andela.com
+                &gt;
+              </label>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ReactTooltip
+    insecure={true}
+    resizeHide={true}
+    wrapper="div"
+  />
+  <div
+    className="row account-row"
+  >
+    <div
+      className="col s2"
+    />
+    <div
+      className="col s7"
+    >
+      <h5
+        className="center-align"
+      >
+        Add
+        <span
+          className="member-username"
+        >
+           kevin
+        </span>
+         to any of these tools
+      </h5>
+      <div
+        className="col s12 team-account-wrapper"
+      >
+        <form
+          className="row team-accout-form"
+        >
+          <div
+            className=""
+          >
+            <label>
+              <input
+                className="with-gap select-all"
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span>
+                <img
+                  alt="icon"
+                  height="30px"
+                  src="/resources/images/select.png"
+                  width="30px"
+                />
+              </span>
+            </label>
+            <span
+              className="span"
+            >
+              Add user to all accounts
+            </span>
+          </div>
+          <br />
+          <div>
+            <label>
+              <input
+                className="with-gap select-some"
+                defaultChecked={true}
+                name="select"
+                onClick={[Function]}
+                type="radio"
+              />
+              <span />
+              <label
+                className="select"
+              >
+                <StateManager
+                  closeMenuOnSelect={false}
+                  components={
+                    Object {
+                      "MultiValueLabel": [Function],
+                      "Option": [Function],
+                    }
+                  }
+                  defaultInputValue=""
+                  defaultMenuIsOpen={false}
+                  defaultValue={
+                    Array [
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                    ]
+                  }
+                  isDisabled={false}
+                  isMulti={true}
+                  onChange={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "label": "ah-tap",
+                        "type": "github_repo",
+                        "value": "ah-tap",
+                      },
+                      Object {
+                        "label": "ghoullies-bot",
+                        "type": "slack_channel",
+                        "value": "ghoullies-bot",
+                      },
+                      Object {
+                        "label": "Ghoullies-taps",
+                        "type": "pt_project",
+                        "value": "Ghoullies-taps",
+                      },
+                    ]
+                  }
+                  styles={
+                    Object {
+                      "multiValueRemove": [Function],
+                    }
+                  }
+                />
+              </label>
+            </label>
+          </div>
+          <button
+            className="btn account-btn"
+            name="action"
+            onClick={[Function]}
+            type="submit"
+          >
+            Invite
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      className="col s3"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`<Test Component /> should mount with empty props 1`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="col s12"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-field inline col s11 custom-form search-result"
+        >
+          <i
+            className="material-icons prefix"
+          >
+            search
+          </i>
+          <input
+            autoComplete="off"
+            id="invite-members"
+            onChange={[Function]}
+            placeholder="Invite members"
+            type="search"
+            value=""
+          />
+          <span
+            className="helper-text user-placeholder"
+          >
+            search by username or email
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ReactTooltip
+    insecure={true}
+    resizeHide={true}
+    wrapper="div"
+  />
+</Fragment>
+`;
+
+exports[`<Test Component /> should mount without crashing 1`] = `
+<Fragment>
+  <div
+    className="row"
+  >
+    <div
+      className="col s12"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-field inline col s11 custom-form search-result"
+        >
+          <i
+            className="material-icons prefix"
+          >
+            search
+          </i>
+          <input
+            autoComplete="off"
+            id="invite-members"
+            onChange={[Function]}
+            placeholder="Invite members"
+            type="search"
+            value=""
+          />
+          <span
+            className="helper-text user-placeholder"
+          >
+            search by username or email
+          </span>
+          <div
+            className="user-placeholder undefined"
+          >
+            <label
+              onClick={[Function]}
+              role="button"
+            >
+              <img
+                alt="user"
+                className="search-img"
+              />
+              <label
+                className="user-label"
+              >
+                eze kevin
+                 &lt;
+                eze.kevin@andela.com
+                &gt;
+              </label>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ReactTooltip
+    insecure={true}
+    resizeHide={true}
+    wrapper="div"
+  />
+</Fragment>
+`;
