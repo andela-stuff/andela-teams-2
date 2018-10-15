@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Test Component /> should mount without crashing 1`] = `
+<div
+  className="row extra-form z-depth-5"
+>
+  <form
+    className="col s12"
+    onSubmit={[MockFunction]}
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="input-field col s12 "
+      >
+        <i
+          className="prefix fab fa-slack fa-2x"
+        />
+        <input
+          className="validate"
+          id="Slack_id"
+          name="slackId"
+          onChange={[MockFunction]}
+          pattern="[a-zA-Z0-9_-]{4,15}"
+          type="text"
+          value="abndh234456"
+        />
+        <label
+          htmlFor="Slack_id"
+        >
+          Slack Id
+        </label>
+        <div
+          className="right"
+        >
+          <e
+            direction="top"
+            mappleType="contra"
+            textColor="rgba(56, 93, 215, 0.98)"
+          >
+            <div>
+              <i
+                className="tooltip fa fa-question-circle"
+              />
+            </div>
+            <div>
+              <div>
+                <h5
+                  className=""
+                >
+                  Need help getting slack ID?
+                </h5>
+                <h6>
+                  Follow these simple steps
+                </h6>
+                <ul>
+                  <li>
+                    <i
+                      className="far fa-dot-circle"
+                    />
+                      Login to your slack account
+                  </li>
+                  <li>
+                    <i
+                      className="far fa-dot-circle"
+                    />
+                      At the top left corner, click on your name/username
+                  </li>
+                  <li>
+                    <i
+                      className="far fa-dot-circle"
+                    />
+                      From the pop up that appear, click on 
+                    <b>
+                      Profile & Account
+                    </b>
+                     link
+                  </li>
+                  <li>
+                    <i
+                      className="far fa-dot-circle"
+                    />
+                      Click on 
+                    <b>
+                      More actions
+                    </b>
+                     icon 
+                    <img
+                      alt="more"
+                      height="13px"
+                      src="./resources/images/more1.png"
+                      width="30px"
+                    />
+                  </li>
+                  <li>
+                    <i
+                      className="far fa-dot-circle"
+                    />
+                      Click on 
+                    <b>
+                      Copy member ID
+                    </b>
+                     to copy your slack membership ID(slack ID)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </e>
+        </div>
+      </div>
+      <div
+        className="input-field col s12"
+      >
+        <i
+          className="prefix fab fa-github fa-2x"
+        />
+        <input
+          className="validate"
+          id="github"
+          name="githubId"
+          onChange={[MockFunction]}
+          type="text"
+          value="234535"
+        />
+        <label
+          htmlFor="github"
+        >
+          Github Username
+        </label>
+      </div>
+    </div>
+    <button
+      className="waves-effect waves-light btn center-align blue-btn"
+      type="submit"
+    >
+      Complete sign up
+    </button>
+  </form>
+</div>
+`;

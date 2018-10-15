@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing CardItem Component the elements rendered by the component should match snapshot 1`] = `<span />`;
