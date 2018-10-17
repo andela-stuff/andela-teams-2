@@ -45,7 +45,9 @@ exports[`<Test Component /> should mount without crashing 1`] = `
               />
             </div>
             <div>
-              <div>
+              <div
+                className="tooltip-padding"
+              >
                 <h5
                   className=""
                 >
@@ -54,34 +56,24 @@ exports[`<Test Component /> should mount without crashing 1`] = `
                 <h6>
                   Follow these simple steps
                 </h6>
-                <ul>
+                <ul
+                  className="li-style"
+                >
                   <li>
-                    <i
-                      className="far fa-dot-circle"
-                    />
-                      Login to your slack account
+                    Login to your slack account
                   </li>
                   <li>
-                    <i
-                      className="far fa-dot-circle"
-                    />
-                      At the top left corner, click on your name/username
+                    At the top left corner, click on your name/username
                   </li>
                   <li>
-                    <i
-                      className="far fa-dot-circle"
-                    />
-                      From the pop up that appear, click on 
+                    From the pop up that appear, click on 
                     <b>
                       Profile & Account
                     </b>
                      link
                   </li>
                   <li>
-                    <i
-                      className="far fa-dot-circle"
-                    />
-                      Click on 
+                    Click on 
                     <b>
                       More actions
                     </b>
@@ -94,10 +86,7 @@ exports[`<Test Component /> should mount without crashing 1`] = `
                     />
                   </li>
                   <li>
-                    <i
-                      className="far fa-dot-circle"
-                    />
-                      Click on 
+                    Click on 
                     <b>
                       Copy member ID
                     </b>
