@@ -153,9 +153,11 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
                   defaultValue={
                     Array [
                       Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
+                        "accountId": undefined,
+                        "label": "github_repo",
+                        "name": "github_repo",
+                        "type": "github_repo",
+                        "value": "github_repo",
                       },
                     ]
                   }
@@ -165,19 +167,11 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
                   options={
                     Array [
                       Object {
-                        "label": "ah-tap",
+                        "accountId": undefined,
+                        "label": "github_repo",
+                        "name": "github_repo",
                         "type": "github_repo",
-                        "value": "ah-tap",
-                      },
-                      Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
-                      },
-                      Object {
-                        "label": "Ghoullies-taps",
-                        "type": "pt_project",
-                        "value": "Ghoullies-taps",
+                        "value": "github_repo",
                       },
                     ]
                   }
@@ -361,9 +355,11 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
                   defaultValue={
                     Array [
                       Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
+                        "accountId": undefined,
+                        "label": "github_repo",
+                        "name": "github_repo",
+                        "type": "github_repo",
+                        "value": "github_repo",
                       },
                     ]
                   }
@@ -373,19 +369,11 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
                   options={
                     Array [
                       Object {
-                        "label": "ah-tap",
+                        "accountId": undefined,
+                        "label": "github_repo",
+                        "name": "github_repo",
                         "type": "github_repo",
-                        "value": "ah-tap",
-                      },
-                      Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
-                      },
-                      Object {
-                        "label": "Ghoullies-taps",
-                        "type": "pt_project",
-                        "value": "Ghoullies-taps",
+                        "value": "github_repo",
                       },
                     ]
                   }

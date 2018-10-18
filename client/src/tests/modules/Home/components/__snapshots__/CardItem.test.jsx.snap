@@ -18,16 +18,14 @@ exports[`Testing CardItem Component the elements rendered by the component shoul
         </span>
         <a
           className="btn-floating halfway-fab waves-effect waves-light favorite-btn "
-          data-tip="Add to favorites"
+          disabled={false}
           href="#!"
           id="add-favorite-anchor"
           onClick={[Function]}
         >
           <i
             className="material-icons"
-          >
-            favorite
-          </i>
+          />
         </a>
       </div>
       <div
