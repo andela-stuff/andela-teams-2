@@ -9,19 +9,30 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
       className="col s12"
     >
       <form
+        className="formDefault"
         onSubmit={[Function]}
       >
         <div
-          className="input-field inline col s11 custom-form search-result"
+          className="input-field inline col s10"
+        >
+          <h5
+            className="center-align label"
+          >
+            Search New Member To Invite
+          </h5>
+        </div>
+        <div
+          className="input-field inline col s10 custom-form search-result search"
         >
           <i
-            className="material-icons prefix"
+            className="material-icons prefix search-icon"
           >
             search
           </i>
           <input
             autoComplete="off"
             id="invite-members"
+            onBlur={[Function]}
             onChange={[Function]}
             placeholder="Invite members"
             type="search"
@@ -83,7 +94,7 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
          to any of these tools
       </h5>
       <div
-        className="col s12 team-account-wrapper"
+        className="col s10 team-account-wrapper"
       >
         <form
           className="row team-accout-form"
@@ -98,23 +109,17 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
                 onClick={[Function]}
                 type="radio"
               />
-              <span>
-                <img
-                  alt="icon"
-                  height="30px"
-                  src="/resources/images/select.png"
-                  width="30px"
-                />
+              <span
+                className="span"
+              >
+                Add user to all accounts
               </span>
             </label>
-            <span
-              className="span"
-            >
-              Add user to all accounts
-            </span>
           </div>
           <br />
-          <div>
+          <div
+            className=""
+          >
             <label>
               <input
                 className="with-gap select-some"
@@ -123,9 +128,17 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
                 onClick={[Function]}
                 type="radio"
               />
-              <span />
+              <span
+                className="span"
+              >
+                Add user to some accounts
+              </span>
+            </label>
+          </div>
+          <div>
+            <label>
               <label
-                className="select"
+                className="select multi-select"
               >
                 <StateManager
                   closeMenuOnSelect={false}
@@ -204,19 +217,30 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
       className="col s12"
     >
       <form
+        className="formDefault"
         onSubmit={[Function]}
       >
         <div
-          className="input-field inline col s11 custom-form search-result"
+          className="input-field inline col s10"
+        >
+          <h5
+            className="center-align label"
+          >
+            Search New Member To Invite
+          </h5>
+        </div>
+        <div
+          className="input-field inline col s10 custom-form search-result search"
         >
           <i
-            className="material-icons prefix"
+            className="material-icons prefix search-icon"
           >
             search
           </i>
           <input
             autoComplete="off"
             id="invite-members"
+            onBlur={[Function]}
             onChange={[Function]}
             placeholder="Invite members"
             type="search"
@@ -278,7 +302,7 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
          to any of these tools
       </h5>
       <div
-        className="col s12 team-account-wrapper"
+        className="col s10 team-account-wrapper"
       >
         <form
           className="row team-accout-form"
@@ -293,23 +317,17 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
                 onClick={[Function]}
                 type="radio"
               />
-              <span>
-                <img
-                  alt="icon"
-                  height="30px"
-                  src="/resources/images/select.png"
-                  width="30px"
-                />
+              <span
+                className="span"
+              >
+                Add user to all accounts
               </span>
             </label>
-            <span
-              className="span"
-            >
-              Add user to all accounts
-            </span>
           </div>
           <br />
-          <div>
+          <div
+            className=""
+          >
             <label>
               <input
                 className="with-gap select-some"
@@ -318,9 +336,17 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
                 onClick={[Function]}
                 type="radio"
               />
-              <span />
+              <span
+                className="span"
+              >
+                Add user to some accounts
+              </span>
+            </label>
+          </div>
+          <div>
+            <label>
               <label
-                className="select"
+                className="select multi-select"
               >
                 <StateManager
                   closeMenuOnSelect={false}
@@ -399,19 +425,30 @@ exports[`<Test Component /> Should respond to an onChange event of search input 
       className="col s12"
     >
       <form
+        className="formActive"
         onSubmit={[Function]}
       >
         <div
-          className="input-field inline col s11 custom-form search-result"
+          className="input-field inline col s10"
+        >
+          <h5
+            className="center-align label"
+          >
+            Search New Member To Invite
+          </h5>
+        </div>
+        <div
+          className="input-field inline col s10 custom-form search-result search"
         >
           <i
-            className="material-icons prefix"
+            className="material-icons prefix search-icon"
           >
             search
           </i>
           <input
             autoComplete="off"
             id="invite-members"
+            onBlur={[Function]}
             onChange={[Function]}
             placeholder="Invite members"
             type="search"
@@ -452,136 +489,6 @@ exports[`<Test Component /> Should respond to an onChange event of search input 
     resizeHide={true}
     wrapper="div"
   />
-  <div
-    className="row account-row"
-  >
-    <div
-      className="col s2"
-    />
-    <div
-      className="col s7"
-    >
-      <h5
-        className="center-align"
-      >
-        Add
-        <span
-          className="member-username"
-        >
-           kevin
-        </span>
-         to any of these tools
-      </h5>
-      <div
-        className="col s12 team-account-wrapper"
-      >
-        <form
-          className="row team-accout-form"
-        >
-          <div
-            className=""
-          >
-            <label>
-              <input
-                className="with-gap select-all"
-                name="select"
-                onClick={[Function]}
-                type="radio"
-              />
-              <span>
-                <img
-                  alt="icon"
-                  height="30px"
-                  src="/resources/images/select.png"
-                  width="30px"
-                />
-              </span>
-            </label>
-            <span
-              className="span"
-            >
-              Add user to all accounts
-            </span>
-          </div>
-          <br />
-          <div>
-            <label>
-              <input
-                className="with-gap select-some"
-                defaultChecked={true}
-                name="select"
-                onClick={[Function]}
-                type="radio"
-              />
-              <span />
-              <label
-                className="select"
-              >
-                <StateManager
-                  closeMenuOnSelect={false}
-                  components={
-                    Object {
-                      "MultiValueLabel": [Function],
-                      "Option": [Function],
-                    }
-                  }
-                  defaultInputValue=""
-                  defaultMenuIsOpen={false}
-                  defaultValue={
-                    Array [
-                      Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
-                      },
-                    ]
-                  }
-                  isDisabled={false}
-                  isMulti={true}
-                  onChange={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "label": "ah-tap",
-                        "type": "github_repo",
-                        "value": "ah-tap",
-                      },
-                      Object {
-                        "label": "ghoullies-bot",
-                        "type": "slack_channel",
-                        "value": "ghoullies-bot",
-                      },
-                      Object {
-                        "label": "Ghoullies-taps",
-                        "type": "pt_project",
-                        "value": "Ghoullies-taps",
-                      },
-                    ]
-                  }
-                  styles={
-                    Object {
-                      "multiValueRemove": [Function],
-                    }
-                  }
-                />
-              </label>
-            </label>
-          </div>
-          <button
-            className="btn account-btn"
-            name="action"
-            onClick={[Function]}
-            type="submit"
-          >
-            Invite
-          </button>
-        </form>
-      </div>
-    </div>
-    <div
-      className="col s3"
-    />
-  </div>
 </Fragment>
 `;
 
@@ -594,19 +501,30 @@ exports[`<Test Component /> should mount with empty props 1`] = `
       className="col s12"
     >
       <form
+        className="formDefault"
         onSubmit={[Function]}
       >
         <div
-          className="input-field inline col s11 custom-form search-result"
+          className="input-field inline col s10"
+        >
+          <h5
+            className="center-align label"
+          >
+            Search New Member To Invite
+          </h5>
+        </div>
+        <div
+          className="input-field inline col s10 custom-form search-result search"
         >
           <i
-            className="material-icons prefix"
+            className="material-icons prefix search-icon"
           >
             search
           </i>
           <input
             autoComplete="off"
             id="invite-members"
+            onBlur={[Function]}
             onChange={[Function]}
             placeholder="Invite members"
             type="search"
@@ -638,19 +556,30 @@ exports[`<Test Component /> should mount without crashing 1`] = `
       className="col s12"
     >
       <form
+        className="formDefault"
         onSubmit={[Function]}
       >
         <div
-          className="input-field inline col s11 custom-form search-result"
+          className="input-field inline col s10"
+        >
+          <h5
+            className="center-align label"
+          >
+            Search New Member To Invite
+          </h5>
+        </div>
+        <div
+          className="input-field inline col s10 custom-form search-result search"
         >
           <i
-            className="material-icons prefix"
+            className="material-icons prefix search-icon"
           >
             search
           </i>
           <input
             autoComplete="off"
             id="invite-members"
+            onBlur={[Function]}
             onChange={[Function]}
             placeholder="Invite members"
             type="search"

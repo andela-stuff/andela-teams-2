@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Test Member Component /> should mount without crashing 1`] = `
+<Fragment>
+  <aside
+    className="col s3 sidebar-wrapper"
+  >
+    <div
+      className="sidebar side-nav-width-collapsed"
+    >
+      <ul
+        className="sidebar-nav"
+      >
+        <li
+          className="nav-menu"
+        >
+          <a
+            href="#!"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+        </li>
+      </ul>
+      <div
+        className="sidebar-inner"
+      >
+        <ul
+          className="sidebar-nav"
+        >
+          <li
+            className="nav-submenu"
+            data-tip="see members"
+          >
+            <a
+              href="#!"
+            >
+              <i
+                className="material-icons"
+              >
+                group
+              </i>
+            </a>
+          </li>
+        </ul>
+        <ReactTooltip
+          insecure={true}
+          resizeHide={true}
+          wrapper="div"
+        />
+      </div>
+    </div>
+  </aside>
+  <section
+    className="row"
+  >
+    <div
+      className="col  offset-s1 s11 mt-40"
+    >
+      <div
+        className="row"
+      >
+        <Connect(InviteMember) />
+      </div>
+    </div>
+  </section>
+</Fragment>
+`;
