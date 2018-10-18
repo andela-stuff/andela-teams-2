@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Home Component the elements rendered by the component should match snapshot 1`] = `
+<div>
+  <Connect(Navbar)
+    gotoHome={[Function]}
+    handleInput={[Function]}
+    handleSubmit={[Function]}
+    searchValue=""
+    showIcon={true}
+  />
+  <Component />
+  <div
+    className="custom-container"
+  >
+    <div
+      className="row mt-2 pb-3"
+    >
+      <InfiniteScroll
+        dataLength={0}
+        disableBrowserPullToRefresh={true}
+        hasMore={true}
+        loader={
+          <div
+            className="center"
+          >
+            <img
+              alt="loading..."
+              className="custom-spinner"
+              src="./resources/images/spinner.svg"
+            />
+          </div>
+        }
+        next={[Function]}
+        pullDownToRefreshContent={
+          <h3>
+            Pull down to refresh
+          </h3>
+        }
+        pullDownToRefreshThreshold={100}
+        releaseToRefreshContent={
+          <h3>
+            Release to refresh
+          </h3>
+        }
+      >
+        <Connect(Cards)
+          teams={
+            Object {
+              "teams": Array [],
+            }
+          }
+          users={
+            Object {
+              "users": Object {},
+            }
+          }
+        />
+      </InfiniteScroll>
+    </div>
+  </div>
+  <Component />
+</div>
+`;

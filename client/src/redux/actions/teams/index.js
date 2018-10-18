@@ -5,11 +5,14 @@ import {
   SEARCH_TEAMS,
   CLEAR_TEAMS,
   CREATE_TEAM,
+  SHOW_RESPONSE,
   ADD_FAVORITE_TEAM,
   FETCH_FAVORITES,
-  REMOVE_FAVORITE_TEAM
+  REMOVE_FAVORITE_TEAM,
+  ISMODAL_OPENED
 } from '../types';
-import { success, isErrored, isLoading } from '../index';
+import api from '../../../utils/api';
+import { success, isErrored, isLoading, apiResponse } from '../index';
 import instance from '../../../config/axios';
 import { successMessage, errorMessage, warningMessage } from '../../../toasts';
 
@@ -39,44 +42,87 @@ export const fetchTeams = (limit, offset, query = '') => dispatch => {
     });
 };
 
+/**
+ * @description redux action to change modal state
+ * @function modalState
+ * @param {bool} bool modal state
+ */
+export const modalState = bool => dispatch => {
+  dispatch({
+    type: ISMODAL_OPENED,
+    payload: bool
+  });
+};
+
+/**
+ * @description method to create team and multiple project integrations
+ * @param {data} data
+ * @returns {object} allrequest
+ */
 export const createTeam = data => async (dispatch) => {
   dispatch(isLoading(true));
   try {
+    // required properties to create a team
     const teamInfo = {
       name: data.name,
       description: data.description,
-      private: data.private,
-    }
-    const githubRepos = data.integrations.github;
+      private: data.private
+    };
 
-    const response = await instance.post('teams', teamInfo)
-    if (response.data.errors) {
-      errorMessage(response.data.errors[0]);
-      return;
+    // all api response
+    const allRequest = {
+      team: []
+    };
+
+    let projects = {};
+    let integrationNames = data.integrations;
+
+    // checks if any integration is selected
+    let integrationExist = Object.entries(integrationNames).some((integration) => integration[1].length > 0);
+
+    let integrationType = {
+      github: 'github_repo',
+      pt: 'pt_project',
+      slack: 'slack_private_channel'
+    };
+
+    // all selected integrations
+    for (const name in integrationNames) {
+      if (integrationNames[name].length) {
+        allRequest[name] = [];
+        projects[name] = integrationNames[name];
+      }
     }
+
+    // api call to create a team
+    const response = await api('teams', 'post', teamInfo);
+    allRequest.team = [...allRequest.team, { created: true, name: data.name }];
+    if (integrationExist) {
+      const allProject = Object.keys(projects);
+      for (const integration of allProject) {
+        for (const accountName of projects[integration]) {
+          const integrationInfo = {
+            name: accountName,
+            type: integrationType[integration]
+          };
+          try {
+            await api(`teams/${response.data.team.id}/accounts`, 'post', integrationInfo);
+            allRequest[integration] = [...allRequest[integration], { created: true, name: accountName }];
+          } catch (error) {
+            allRequest[integration] = [...allRequest[integration], { created: false, name: accountName }];
+          }
+        }
+      }
+      dispatch(isLoading(false));
+      return dispatch(apiResponse(SHOW_RESPONSE, allRequest));
+    }
+
+    dispatch(isLoading(false));
     successMessage(`${data.name} successfully created`);
-
-    githubRepos.length && githubRepos.map( async (repoName) => {
-      let githubInfo = {
-        name: repoName,
-        type: 'github_repo'
-      }
-      try {
-        let gitRepo = await instance.post(`teams/${response.data.data.team.id}/accounts`, githubInfo)
-        if (gitRepo.data.errors) {
-        errorMessage(gitRepo.data.errors[0]);
-        return
-      }
-      successMessage(`${repoName} successfully created`);
-      } catch(error) {
-        errorMessage(`failed to create ${repoName}`);
-      }
-    })
-
-    dispatch(success(CREATE_TEAM, response.data));
-
+    return dispatch(success(CREATE_TEAM, response));
   } catch (error) {
     dispatch(isLoading(false));
+    errorMessage(error);
   }
 };
 
@@ -141,12 +187,10 @@ export const fetchFavoriteTeamsAction = () => dispatch => {
     });
 };
 
-export const removeFavoritesTeamsAction = (id) => dispatch => {
-  return instance.delete(`/favorites/${id}`)
-    .then(() => {
-      dispatch(removeFavoriteTeam(id));
-      successMessage('Team successfully removed from favorites');
-    }).catch((error) => {
-      console.error(error);
-    });
-};
+export const removeFavoritesTeamsAction = (id) => dispatch => instance.delete(`/favorites/${id}`)
+  .then(() => {
+    dispatch(removeFavoriteTeam(id));
+    successMessage('Team successfully removed from favorites');
+  }).catch((error) => {
+    console.error(error);
+  });

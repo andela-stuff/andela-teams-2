@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { IS_LOGGED_IN, IS_LOADING } from './types';
+import { IS_LOGGED_IN, IS_LOADING, CLEAR_REQUEST_STATE } from './types';
 
 export const isErrored = (type, payload) => ({
   type,
@@ -51,3 +51,14 @@ export const isLoading = payload => dispatch => {
   }
   dispatch(toggleLoader(IS_LOADING, payload));
 };
+
+export const apiResponse = (type, payload) => ({
+  type,
+  payload
+});
+
+export const clearRequestState = () => dispatch => (
+  dispatch({
+    type: CLEAR_REQUEST_STATE
+  })
+);

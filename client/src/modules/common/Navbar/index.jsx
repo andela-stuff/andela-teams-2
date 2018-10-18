@@ -4,34 +4,64 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../../redux/actions/auth';
+import { createAdminRequest, checkUserRequest } from '../../../redux/actions/requests';
+import { warningMessage, successMessage } from '../../../toasts';
+import errorFormatter from '../../../utils/errorFormatter.json';
+import { clearRequestState } from '../../../redux/actions';
 
 class Navbar extends Component {
   static propTypes = {
     signOut: PropTypes.func.isRequired,
+    createAdminRequest: PropTypes.func.isRequired,
+    clearRequestState: PropTypes.func.isRequired,
+    checkUserRequest: PropTypes.func.isRequired,
     auth: PropTypes.shape({
       name: PropTypes.string
+    }).isRequired,
+    requestsReducer: PropTypes.shape({
+      error: PropTypes.string,
+      request: PropTypes.object,
+      success: PropTypes.bool,
+      hasRequest: PropTypes.bool
     }).isRequired,
     handleSubmit: PropTypes.func,
     switchContent: PropTypes.func,
     showTabs: PropTypes.bool,
     showIcon: PropTypes.bool,
-    gotoHome: PropTypes.func
+    gotoHome: PropTypes.func,
   };
   constructor(props) {
     super(props);
     this.state = {
       showSearchBar: false,
-      name: ''
+      name: '',
+      timeout: 0
     };
     this.toggleState = this.toggleState.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.signOut = this.signOut.bind(this);
+    this.handleAdminRequest = this.handleAdminRequest.bind(this);
+    this.instantSearch = this.instantSearch.bind(this);
   }
   componentDidMount = () => {
     if (this.props.auth) {
       this.setState(() => ({ name: this.props.auth.name }));
     }
+    const userId = localStorage.getItem("userId");
+    this.props.checkUserRequest(userId, 'admin_request');
   };
+
+  componentDidUpdate(prevProps) {
+    const { requestsReducer: { error, success } } = this.props;
+    if (error && !success) {
+      warningMessage(errorFormatter[error]);
+      this.props.clearRequestState();
+    }
+    if (success) {
+      successMessage('Request Sent');
+      this.props.clearRequestState();
+    }
+  }
 
   handleSearch(event) {
     event.preventDefault();
@@ -41,9 +71,23 @@ class Navbar extends Component {
     });
   }
 
+  instantSearch(event) {
+    event.preventDefault();
+    if (this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.props.handleSubmit(event);
+    }, 500);
+    this.props.handleInput(event);
+  }
+
   signOut(event) {
     event.preventDefault();
     this.props.signOut();
+  }
+
+  handleAdminRequest(event) {
+    event.preventDefault();
+    this.props.createAdminRequest({ type: 'admin_request' });
   }
 
   toggleState(state) {
@@ -59,6 +103,7 @@ class Navbar extends Component {
 
   render() {
     const { showSearchBar, name } = this.state;
+    const { requestsReducer: { hasRequest } } = this.props;
     const role = localStorage.getItem("role");
     const {
       showTabs, switchContent, showIcon, gotoHome
@@ -66,6 +111,7 @@ class Navbar extends Component {
     const searchBar = showSearchBar ? 'show' : 'hide';
     const mainNav = showSearchBar ? 'hide' : 'show';
     const extendNavbar = showTabs ? 'nav-extended ' : '';
+    const disableClass = hasRequest ? 'disabledButton' : '';
     return (
       <div className="navbar-fixed">
         <nav className={`nav-white ${extendNavbar} ${mainNav}`}>
@@ -114,7 +160,11 @@ class Navbar extends Component {
                     </NavLink>
                   </li> :
                   <li>
-                    <button className="admin-request-btn">
+                    <button
+                      className={`admin-request-btn ${disableClass}`}
+                      onClick={this.handleAdminRequest}
+                      disabled={hasRequest}
+                    >
                       <i
                         className="tiny material-icons"
                         data-tip="Only LFs can make this request">
@@ -207,7 +257,7 @@ class Navbar extends Component {
                   type="search"
                   required
                   value={this.props.searchValue}
-                  onChange={this.props.handleInput}
+                  onChange={this.instantSearch}
                 />
                 <label className="label-icon" htmlFor="search">
                   <i className="material-icons">search</i>
@@ -273,8 +323,11 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth
+const mapStateToProps = ({ auth, requestsReducer }) => ({
+  auth,
+  requestsReducer
 });
 
-export default connect(mapStateToProps, { signOut })(Navbar);
+export default connect(mapStateToProps, {
+  signOut, createAdminRequest, clearRequestState, checkUserRequest
+})(Navbar);

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Test Component /> should mount without crashing 1`] = `
+<footer
+  className="footer-wrapper"
+>
+  <div
+    className="col s12 white"
+  >
+    © 
+    2018
+  </div>
+</footer>
+`;

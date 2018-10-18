@@ -1,46 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react';
+import { getInitials, formatWord } from '../../../utils/format';
+import { githubOptions, ptOptions, slackOptions } from '../../../utils/conventions';
 import slack from '../../../../public/resources/images/slack.png';
 import pt from '../../../../public/resources/images/pt.jpg';
 
-const Form = ({
+/**
+ * @description stateless form component
+ * @param {object} props
+ * @returns {JSX} jsx
+ */
+export const Form = ({
   handleChange,
   name,
   desc,
-  checked,
+  project,
   handleSubmit,
   submitting,
-  menuChange
+  menuChange,
+  integrations
 }) => {
   let showSubmitButton = false;
   let teamName = 'example';
+  let showDropDown = true;
+  let projectName = project;
+  let slackDropdown = [];
+  let githubDropdown = [];
+  let ptDropdown = [];
 
   if (name.trim() && desc.trim()) {
     showSubmitButton = true;
+    showDropDown = false;
+    teamName = formatWord(name.trim()).toLowerCase();
+    slackDropdown = slackOptions(teamName);
+    ptDropdown = ptOptions(teamName);
+    githubDropdown = githubOptions(teamName);
   }
-  
-  if (name.trim()) {
-    teamName = name
+
+  if (project.trim()) {
+    teamName = formatWord(name.trim()).toLowerCase();
+    projectName = getInitials(project).toLowerCase();
+    slackDropdown = slackOptions(teamName, projectName);
+    ptDropdown = ptOptions(teamName, projectName);
+    githubDropdown = githubOptions(teamName, projectName);
   }
 
-  const githubOptions = [
-    {key: `ah-${teamName}-frontend`, text: `ah-${teamName}-frontend`, value: `ah-${teamName}-frontend`},
-    {key: `ah-${teamName}`, text: `ah-${teamName}`, value: `ah-${teamName}`},
-    {key: `${teamName}-ah`, text: `${teamName}-ah`, value: `${teamName}-ah`}
-  ]
-
-  const ptOptions = [
-    {key: `ah-${teamName}`, text: `ah-${teamName}`, value: `ah-${teamName}`},
-    {key: `${teamName}-ah`, text: `${teamName}-ah`, value: `${teamName}-ah`}
-  ]
-
-  const slackOptions = [
-    {key: `ah-${teamName}`, text: `ah-${teamName}`, value: `ah-${teamName}`},
-    {key: `${teamName}-general`, text: `${teamName}-general`, value: `${teamName}-general`},
-    {key: `${teamName}-standups`, text: `${teamName}-standups`, value: `${teamName}-standups`},
-    {key: `${teamName}-bots`, text: `${teamName}-bots`, value: `${teamName}-bots`}
-  ]
 
   return (
     <form
@@ -88,22 +93,48 @@ const Form = ({
             <label>Team visibility</label>
           </div>
         </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input
+              id="project"
+              required
+              name="project"
+              type="text"
+              className="validate"
+              value={project}
+              onChange={handleChange}
+            />
+            <label className="active" htmlFor="project">Project name</label>
+          </div>
+        </div>
         <div className="team-accounts top-margin">
           <i className="fab fa-github integration-icon">`</i>
-          <Dropdown name='github' onChange={menuChange} placeholder='Repo name'
-           fluid multiple selection search options={githubOptions} />
+          <Dropdown
+            disabled={showDropDown || submitting}
+            value={integrations['github']}
+            name="github" onChange={menuChange} placeholder="Repo name"
+            fluid multiple selection search options={githubDropdown} />
         </div>
         <div className="team-accounts top-margin">
-          <img src={pt} className="integration-icon small-icon" alt="pt-image"/>
-          <Dropdown placeholder='PT name' fluid multiple selection search options={ptOptions} />
+          <img src={pt} className="integration-icon small-icon" alt="pt-image" />
+          <Dropdown
+            disabled={showDropDown || submitting}
+            value={integrations['pt']}
+            name="pt" onChange={menuChange} placeholder="PT name"
+            fluid multiple selection search options={ptDropdown} />
         </div>
         <div className="team-accounts top-margin">
-          <img src={slack} className="integration-icon small-icon" alt="slack-image"/>
-          <Dropdown placeholder='channel name' fluid multiple selection search options={slackOptions} />
+          <img src={slack} className="integration-icon small-icon" alt="slack-image" />
+          <Dropdown
+            disabled={showDropDown || submitting}
+            value={integrations['slack']}
+
+            name="slack" onChange={menuChange} placeholder="channel name"
+            fluid multiple selection search options={slackDropdown} />
         </div>
         {!showSubmitButton && (
           <div className="submit-btn">
-            <button className="btn right disabled top-margin bottom-margin">
+            <button className="btn form-subimt-btn right disabled top-margin bottom-margin">
             Submit
             </button>
           </div>
@@ -129,9 +160,11 @@ const Form = ({
 
 Form.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  menuChange: PropTypes.func.isRequired,
+  project: PropTypes.string.isRequired,
+  integrations: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
 };

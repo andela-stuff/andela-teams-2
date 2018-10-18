@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // actions
-import { createTeam, clearTeams } from '../../../redux/actions/teams';
+import { createTeam, clearTeams, modalState } from '../../../redux/actions/teams';
 
 //components
 import Navbar from '../../common/Navbar';
@@ -11,14 +11,22 @@ import Form from '../components/Form';
 
 // toast
 import { errorMessage } from '../../../toasts';
+import VisualFeedback from '../../../toasts/VisualFeedback';
 
-class CreateTeam extends Component {
+/**
+ * @class
+ * @constructor
+ */
+export class CreateTeam extends Component {
   static propTypes = {
-    teams: PropTypes.shape({
-      data: PropTypes.array
-    }).isRequired,
+    teams: PropTypes.object.isRequired,
     createTeam: PropTypes.func.isRequired,
     clearTeams: PropTypes.func.isRequired,
+    modalState: PropTypes.func.isRequired,
+    apiMessage: PropTypes.object.isRequired,
+    isFetching: PropTypes.shape({
+      isLoading: PropTypes.bool.isRequired
+    }).isRequired,
     history: PropTypes.shape({
       push: PropTypes.func
     }).isRequired
@@ -29,10 +37,13 @@ class CreateTeam extends Component {
     this.state = {
       name: '',
       description: '',
+      project: 'authors haven',
       visibility: false,
       submitting: false,
       integrations: {
-        github: []
+        github: [],
+        pt: [],
+        slack: []
       }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -59,9 +70,16 @@ class CreateTeam extends Component {
     this.props.clearTeams();
   }
 
+  /**
+   * @description handles form submission
+   * @param {object} event
+   * @returns {function} createTeam
+   */
   handleSubmit(event) {
     event.preventDefault();
-    const { name, visibility, description, integrations } = this.state;
+    const {
+      name, visibility, description, integrations
+    } = this.state;
     const data = {
       name,
       description,
@@ -80,32 +98,62 @@ class CreateTeam extends Component {
     }));
   }
 
+  /**
+   * @description handles input change
+   * @param {object} event
+   */
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      integrations: {
+        github: [],
+        slack: [],
+        pt: []
+      }
     });
   }
 
+  /**
+   * @description handles integration account dropdown
+   * @param {event}
+   * @param {item} selected items
+   */
   menuChange = (event, item) => {
     this.setState({
-      integrations: {...this.state.integrations, [item.name]: item.value }
-    })
+      integrations: { ...this.state.integrations, [item.name]: item.value }
+    });
+  }
+
+  /**
+   * @description controls modal visibility
+   * @param {bool} bool
+   */
+  handleModalState = (bool) => {
+    this.props.modalState(bool);
+    return this.props.history.push('/teams');
   }
 
   render() {
     const {
-      name, description, visibility, github
+      name, description, visibility, github,
+      project, integrations
     } = this.state;
+    const { showModal } = this.props.teams;
     return (
       <React.Fragment>
         <Navbar />
         <div className="container">
+          {showModal && <VisualFeedback
+            modalState={this.handleModalState}
+            response={this.props.apiMessage} isModalOpened={showModal} />}
           <div className="row valign-wrapper">
             <Form
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
               menuChange={this.menuChange}
+              integrations={integrations}
               name={name}
+              project={project}
               desc={description}
               checked={visibility}
               github={github}
@@ -118,9 +166,10 @@ class CreateTeam extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  teams: state.teams,
-  isFetching: state.isLoading
+export const mapStateToProps = ({ teams, isLoading }) => ({
+  teams: teams,
+  apiMessage: teams.apiResponse,
+  isFetching: isLoading
 });
 
-export default connect(mapStateToProps, { createTeam, clearTeams })(CreateTeam);
+export default connect(mapStateToProps, { createTeam, clearTeams, modalState })(CreateTeam);

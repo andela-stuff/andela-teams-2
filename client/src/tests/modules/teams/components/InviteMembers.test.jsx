@@ -23,6 +23,7 @@ describe('<Test Component />', () => {
   it('Radio button should respond to an onClick event', () => {
     const wrapper = shallow(<InviteMember {...props} />);
     wrapper.setState({ searchInput: 'kevin' });
+    wrapper.setState({ searchInput: 'kevin', user: { id: 2, name: 'kevin' } });
     wrapper.find('.select-all').simulate('click');
     expect(wrapper).toMatchSnapshot();
     wrapper.find('.select-some').simulate('click');
@@ -39,6 +40,7 @@ describe('<Test Component />', () => {
   it('inviteMember class methods should be called', () => {
     const inviteMember = jest.spyOn(InviteMember.prototype, 'inviteMember');
     const wrapper = shallow(<InviteMember {...props} />);
+    wrapper.setState({ searchInput: 'kevin', user: { id: 2, name: 'kevin' } });
     wrapper.instance().inviteMember({ preventDefault: jest.fn() });
     expect(inviteMember).toHaveBeenCalled();
   });
@@ -48,5 +50,34 @@ describe('<Test Component />', () => {
     const wrapper = shallow(<InviteMember {...props} />);
     wrapper.instance().isDisabled();
     expect(isDisabled).toHaveBeenCalled();
+  });
+
+  it('selectUser class methods should be called when a user is selected', () => {
+    const selectUser = jest.spyOn(InviteMember.prototype, 'selectUser');
+    const wrapper = shallow(<InviteMember {...props} />);
+    wrapper.find('.user-label').simulate('click');
+    wrapper.instance().selectUser();
+    expect(selectUser).toHaveBeenCalled();
+  });
+
+  it('handleSubmit class methods should be called', () => {
+    const handleSubmit = jest.spyOn(InviteMember.prototype, 'handleSubmit');
+    const wrapper = shallow(<InviteMember {...props} />);
+    wrapper.instance().handleSubmit({ preventDefault: jest.fn() });
+    expect(handleSubmit).toHaveBeenCalled();
+  });
+
+  it('toggleSearch class methods should be called', () => {
+    const toggleSearch = jest.spyOn(InviteMember.prototype, 'toggleSearch');
+    const wrapper = shallow(<InviteMember {...props} />);
+    wrapper.instance().toggleSearch();
+    expect(toggleSearch).toHaveBeenCalled();
+  });
+
+  it('multiSelectOptions class methods should be called', () => {
+    const multiSelectOptions = jest.spyOn(InviteMember.prototype, 'multiSelectOptions');
+    const wrapper = shallow(<InviteMember {...props} />);
+    wrapper.instance().multiSelectOptions();
+    expect(multiSelectOptions).toHaveBeenCalled();
   });
 });

@@ -20,8 +20,7 @@
 
 .integration-icons {
   margin-right: 20px;
-  color: $andela-blue;
-  font-size: 35px;
+  width: 40px;
 }
 
 .integration-h6 {
@@ -49,16 +48,66 @@
 }
 
 .integration-tools {
-  border-block-end: inherit;
-  margin-top: 20px;
-  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DDDDDD;
+  padding: 11px 10px;
   font-family: 'Lato';
 }
 
+.integration-modal {
+  padding: 0 !important;
+  width: 29% !important;
+}
+
 .integration-header {
-  text-align: center;
-  font-size: 14px;
+  text-align: left;
   font-family: 'Lato';
+  padding: 15px;
+
+  h5 {
+    font-size: 18px;
+  }
+}
+
+.no-border {
+  border: none;
+}
+
+.integration-tool-names {
+  display: flex;
+  align-items: center;
+}
+
+.integration-body {
+  padding: 15px 29px;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+}
+
+.integration-tool-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 12px;
+}
+
+.integration-tools-container {
+  background-color: #F7F6F6;
+  padding: 0px 6px;
+
+}
+
+.integration-tool-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 11px 29px;
+  cursor: pointer;
+
+  p {
+    font-size: 16px;
+    text-transform: capitalize;
+  }
 }
 
 .sidebar {
@@ -178,23 +227,23 @@
   .team-account-wrapper {
     background-color: #F1F1F1; //#EBEBEB;
     border-radius: 10px;
+
     .team-accout-form {
       padding: 3rem 1rem 4rem 4rem;
       .select {
-        cursor: pointer;
+        cursor: default;
         display: inline-block;
-        width: 70%;
+        width: 80%;
       }     
       .account-btn {
-        margin: 5rem 21% 1rem;
+        margin: 5rem 20% 1rem;
         float: right;
         background-color: #385cd7 !important;
       }    
     }
     .span {
+      color: #504747 !important;
       font-size: 18px;
-      margin: 0.5rem 1rem 0 1rem;
-      position: absolute;
     }
   }
   .member-username {
@@ -222,21 +271,43 @@ input[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:bef
 }
 
 .team-account-wrapper {
-  background-color: #F1F1F1; //#EBEBEB;
+  background-color: #F1F1F1;
   border-radius: 10px;
 }
 
-.swal-button, .swal-button-confirm {
-  background-color: #385cd7 !important;
-  color: #fff;
-  border: none;
-  box-shadow: none;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 24px;
-  margin: 0;
-  cursor: pointer;
+.search-result {
+  background-color: #F1F1F1;
+  border-radius: 10px;
+  cursor: default;
+  .search-img {
+  margin-left: 1rem;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  }
+  .user-label {      
+  color: #6378bb;
+  font-size: 15px;
+  padding: 3px 0px 0px 1rem;
+  }
+  .none {
+    display: none;
+  }
+  .user-placeholder {
+    margin-bottom: 1rem !important;
+    :hover{
+      color: #234fdd;
+    }
+  }
+  
+}
+
+.search-result:hover {
+  .none {
+    display: block !important;
+  }
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2); 
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .select-account-label {
@@ -247,4 +318,46 @@ input[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:bef
 .select-account-dropdown{
   font-size: 15px;
   display: 1px solid bold;
+}
+
+.formDefault {
+  margin-top: 21%;
+  .label {
+    color: #234fdd;
+  }
+  .search {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 40px;
+  }
+  .search-icon {
+    margin-top: 10px !important;
+  }
+  #invite-members:focus {
+    margin-top: 10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+.formActive {
+  .label {
+    display: none;
+  }
+  .search {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 20px;
+  }
+}
+
+.search-icon{
+  margin-top: 6px !important;
+}
+#invite-members:focus {
+  margin-top: 8px !important;
+  border-radius: 8px !important;
+}
+.multi-select {
+  margin-top: 1rem;
+  margin-left: 8px;
 }

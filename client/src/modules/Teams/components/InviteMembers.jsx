@@ -5,10 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import Select, { components } from 'react-select';
 
 // Actions
-import { searchUser } from '../../../redux/actions/users';
-
-// Components
-import MemberCard from './MemberCard';
+import { searchUser, clearUser } from '../../../redux/actions/users';
 
 export class InviteMember extends Component {
   static propTypes = {
@@ -20,9 +17,11 @@ export class InviteMember extends Component {
     super(props);
     this.state = {
       searchInput: '',
-      accounts: { value: 'ghoullies-bot', label: 'ghoullies-bot', type: 'slack_channel' },
+      accounts: [this.multiSelectOptions()[0]],
       ismultiSelectDisabled: false,
-      selectAllDisabled: true
+      selectAllDisabled: true,
+      user: null,
+      formClass: 'formDefault'
     };
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -32,34 +31,40 @@ export class InviteMember extends Component {
     this.handleSelected = this.handleSelected.bind(this);
     this.inviteMember = this.inviteMember.bind(this);
     this.isDisabled = this.isDisabled.bind(this);
-  }
-
-  handleSearch(event) {
-    this.setState({ searchInput: event.target.value });
+    this.selectUser = this.selectUser.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
+    this.multiSelectOptions = this.multiSelectOptions.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ searchInput: event.target.value });
-    const { searchInput } = this.state;
-    this.props.searchUser(searchInput);
-    this.setState({ searchInput: '' });
+    const user = this.props.users[0];
+    const temp = user.email.slice(0, -11);
+    const fullName = temp.split('.').join(' ');
+    this.setState({ searchInput: fullName, user });
+    this.props.clearUser();
+  }
+
+  handleSearch(event) {
+    const searchInput = event.target.value;
+    this.setState({ searchInput, formClass: 'formActive', user: null });
+    if (this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.props.searchUser(searchInput);
+    }, 500);
   }
 
   renderSearchOutput(users) {
-    const { addMember } = this.props;
     return users.map(item => {
       const temp = item.email.slice(0, -11);
       const fullName = temp.split('.').join(' ');
       return (
-        <MemberCard
-          name={fullName}
-          // role={item.role}
-          photo={item.photo}
-          key={item.id}
-          userId={item.id}
-          addMember={addMember}
-        />
+        <div className={`user-placeholder ${this.state.visibility}`} key={item.id}>
+          <label role="button" onClick={() => this.selectUser(fullName, item)}>
+            <img src={item.photo} className="search-img" alt="user" />
+            <label className="user-label">{fullName} &lt;{item.email}&gt;</label>
+          </label>
+        </div>
       );
     });
   }
@@ -71,12 +76,27 @@ export class InviteMember extends Component {
 
   inviteMember(e) {
     e.preventDefault();
+    const { addMember } = this.props;
+    const userId = this.state.user.id;
+    let accounts;
     if (!this.state.ismultiSelectDisabled && this.state.selectAllDisabled) {
-      const { accounts } = this.state;
-      console.log(accounts);
+      // eslint-disable-next-line prefer-destructuring
+      accounts = this.state.accounts;
     } else if (this.state.ismultiSelectDisabled && !this.state.selectAllDisabled) {
-    // const { addMember } = this.props;
+      accounts = this.props.accounts.map(account => {
+        const accountObj = {
+          type: account.type,
+          accountId: account.id,
+          name: account.name
+        };
+        return accountObj;
+      });
     }
+    const data = {
+      accounts,
+      userId
+    };
+    addMember(e, data);
   }
 
   isDisabled(value) {
@@ -87,6 +107,28 @@ export class InviteMember extends Component {
     }
   }
 
+  selectUser(name, item) {
+    this.setState({ searchInput: name, user: item });
+    this.props.clearUser();
+  }
+
+  toggleSearch() {
+    if (!this.state.searchInput) {
+      this.setState({ formClass: 'formDefault' });
+      this.props.clearUser();
+    }
+  }
+
+  multiSelectOptions() {
+    return this.props.accounts.map(account => ({
+      value: account.name,
+      label: account.name,
+      type: account.type,
+      accountId: account.id,
+      name: account.name
+    }));
+  }
+
   render() {
     const { searchInput } = this.state;
     const { users } = this.props;
@@ -95,17 +137,17 @@ export class InviteMember extends Component {
       <components.MultiValueLabel {...props}>
         {props.data.type === 'github_repo' ?
           <label className="select-account-label">
-            <img src="/resources/images/github.png" className="account-icon" alt="github" />
+            <img src="/resources/images/github.svg" className="account-icon" alt="github" />
             {` ${props.data.label}`}
           </label> :
           <label>
-            {props.data.type === 'slack_channel' ?
+            {props.data.type === 'slack_channel' || props.data.type === 'slack_private_channel' ?
               <label className="select-account-label">
                 <img src="/resources/images/slack.png" className="account-icon" alt="slack" />
                 {` ${props.data.label}`}
               </label> :
               <label className="select-account-label">
-                <img src="/resources/images/pt.jpg" className="account-icon" alt="pt" />
+                <img src="/resources/images/pt.png" className="account-icon" alt="pt" />
                 {` ${props.data.label}`}
               </label>}
           </label>}
@@ -116,51 +158,52 @@ export class InviteMember extends Component {
       <components.Option {...props}>
         {props.data.type === 'github_repo' ?
           <label className="select-account-dropdown">
-            <img src="/resources/images/github.png" className="account-icon" alt="github" />
+            <img src="/resources/images/github.svg" className="account-icon" alt="github" />
             {` ${props.data.label}`}
           </label> :
           <label>
-            {props.data.type === 'slack_channel' ?
+            {props.data.type === 'slack_channel' || props.data.type === 'slack_private_channel' ?
               <label className="select-account-dropdown">
                 <img src="/resources/images/slack.png" className="account-icon" alt="slack" />
                 {` ${props.data.label}`}
               </label> :
               <label className="select-account-dropdown">
-                <img src="/resources/images/pt.jpg" className="account-icon" alt="pt" />
+                <img src="/resources/images/pt.png" className="account-icon" alt="pt" />
                 {` ${props.data.label}`}
               </label>}
           </label>}
       </components.Option>
     );
 
-    const options = [
-      { value: 'ah-tap', label: 'ah-tap', type: 'github_repo' },
-      { value: 'ghoullies-bot', label: 'ghoullies-bot', type: 'slack_channel' },
-      { value: 'Ghoullies-taps', label: 'Ghoullies-taps', type: 'pt_project' }
-    ];
-
     return (
       <React.Fragment>
         <div className="row">
           <div className="col s12">
-            <form onSubmit={this.handleSubmit}>
-              <div className="input-field inline col s11 custom-form team-account-wrapper">
-                <i className="material-icons prefix">search</i>
+            <form onSubmit={this.handleSubmit} className={this.state.formClass}>
+              <div className="input-field inline col s10">
+                <h5 className="center-align label">Search New Member To Invite</h5>
+              </div>
+              <div className="input-field inline col s10 custom-form search-result search">
+                <i className="material-icons prefix search-icon">search</i>
                 <input
                   id="invite-members"
                   type="search"
                   value={searchInput}
                   onChange={this.handleSearch}
                   placeholder="Invite members"
+                  autoComplete="off"
+                  onBlur={this.toggleSearch}
                 />
-                <span className="helper-text">search by username or email</span>
+                <span className="helper-text user-placeholder">search by username or email</span>
+                {users && this.renderSearchOutput(users)}
               </div>
+
             </form>
           </div>
         </div>
-        {users && this.renderSearchOutput(users)}
+
         <ReactTooltip />
-        {this.state.searchInput &&
+        {this.state.user &&
         <div className="row account-row">
           <div className="col s2" />
           <div className="col s7">
@@ -170,30 +213,35 @@ export class InviteMember extends Component {
                 {` ${this.state.searchInput}`}
               </span> to any of these tools
             </h5>
-            <div className="col s12 team-account-wrapper">
+            <div className="col s10 team-account-wrapper">
               <form className="row team-accout-form">
                 <div className="">
                   <label>
                     <input className="with-gap select-all" name="select" type="radio" onClick={() => this.isDisabled('all')} />
-                    <span><img src="/resources/images/select.png" alt="icon" height="30px" width="30px" /></span>
+                    <span className="span">Add user to all accounts</span>
                   </label>
-                  <span className="span">Add user to all accounts</span>
+
                 </div>
                 <br />
-                <div>
+                <div className="">
                   <label>
                     <input onClick={() => this.isDisabled('select')} className="with-gap select-some" name="select" type="radio" defaultChecked />
-                    <span />
-                    <label className="select">
+                    <span className="span">Add user to some accounts</span>
+                  </label>
+
+                </div>
+                <div>
+                  <label>
+                    <label className="select multi-select">
                       <Select
                         closeMenuOnSelect={false}
                         components={{ MultiValueLabel, Option: dropDown }}
                         styles={{
                           multiValueRemove: (base) => ({ ...base, fontSize: '15px', color: '#385cd7' })
                         }}
-                        defaultValue={[options[1]]}
+                        defaultValue={[this.multiSelectOptions()[0]]}
                         isMulti
-                        options={options}
+                        options={this.multiSelectOptions()}
                         onChange={this.handleSelected}
                         isDisabled={this.state.ismultiSelectDisabled}
                       />
@@ -219,9 +267,14 @@ const mapStateToProps = ({
     users: {
       data: { users }
     }
+  },
+  accounts: {
+    accounts: {
+      data: { accounts }
+    }
   }
 }) => ({
-  users
+  users, accounts
 });
 
-export default connect(mapStateToProps, { searchUser })(InviteMember);
+export default connect(mapStateToProps, { searchUser, clearUser })(InviteMember);

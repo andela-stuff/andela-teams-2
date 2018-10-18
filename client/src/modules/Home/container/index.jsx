@@ -13,7 +13,7 @@ import Modal from '../../common/Modals/AddMember';
 import Footer from '../../common/Footer';
 import config from '../../../config';
 
-class Home extends Component {
+export class Home extends Component {
   static propTypes = {
     fetchTeams: PropTypes.func.isRequired,
     clearTeams: PropTypes.func.isRequired,
@@ -38,7 +38,7 @@ class Home extends Component {
       offset: 0,
       searchOffset: 0,
       hasMore: true,
-      searchInput: '',
+      searchInput: ''
       // userSearch: ''
     };
 
@@ -118,7 +118,7 @@ class Home extends Component {
     event.preventDefault();
     this.props.clearTeams();
     this.loadMore(this.state.searchInput);
-    this.setState(() => ({ offset: 0, searchInput: '', searchOffset: 0 }));
+    this.setState(() => ({ offset: 0, searchOffset: 0 }));
   }
 
   handleSearchInput(event) {
@@ -183,7 +183,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   teams: state.teams,
   users: state.users,
   auth: state.auth

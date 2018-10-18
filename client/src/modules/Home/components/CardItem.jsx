@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 const CardItems = ({
-  item, favorite, lock, toolTip, progressBar, addFavorites, isFavorited
+  item, favorite, lock, toolTip, progressBar, addFavorites, favoriteLinkTooltip, icon, isFavorited
 }) => {
   return (
     <div>
@@ -12,12 +12,14 @@ const CardItems = ({
           <div className={`card-header ${progressBar[0]}`}>
             <span className="card-title">{item.name}</span>
             <a
+              id="add-favorite-anchor"
               onClick={() => { addFavorites(item.id); }}
               href="#!"
-              data-tip="Add to favorites"
+              disabled={isFavorited || false}
+              data-tip={favoriteLinkTooltip}
               className={isFavorited ? `btn-floating favorite-icons halfway-fab waves-effect waves-light favorite-btn ${favorite}` : `btn-floating halfway-fab waves-effect waves-light favorite-btn ${favorite}`}
             >
-              <i className="material-icons">favorite</i>
+              <i className="material-icons">{icon}</i>
             </a>
           </div>
           <div className="card-description black-text">
