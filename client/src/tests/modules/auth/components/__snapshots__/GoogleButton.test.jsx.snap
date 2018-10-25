@@ -5,6 +5,7 @@ exports[`<Google Button Component test /> should mount without crashing 1`] = `
   accessType="online"
   buttonText="Login with Google"
   className="btn waves-effect waves-yellow white-btn"
+  clientId="454736109457-opngas448k20fkhktr11c375gaojcemi.apps.googleusercontent.com"
   cookiePolicy="single_host_origin"
   disabledStyle={
     Object {
