@@ -73,6 +73,10 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
     resizeHide={true}
     wrapper="div"
   />
+  <VisualFeedback
+    isModalOpened={true}
+    modalState={[Function]}
+  />
   <div
     className="row account-row"
   >
@@ -83,7 +87,7 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
       className="col s7"
     >
       <h5
-        className="center-align"
+        className="col s10 center-align"
       >
         Add
         <span
@@ -184,6 +188,42 @@ exports[`<Test Component /> Radio button should respond to an onClick event 1`] 
               </label>
             </label>
           </div>
+          <div
+            className="role-inputs"
+          >
+            <div>
+                
+              <label
+                className="role-text span"
+              >
+                Select User Role 
+              </label>
+            </div>
+            <div>
+              <select
+                className="role-select"
+                name="role"
+                onChange={[Function]}
+                placeholder="Select "
+              >
+                <option
+                  value="developer"
+                >
+                  Developer
+                </option>
+                <option
+                  value="lead"
+                >
+                  Team Lead
+                </option>
+                <option
+                  value="member"
+                >
+                  Member
+                </option>
+              </select>
+            </div>
+          </div>
           <button
             className="btn account-btn"
             name="action"
@@ -275,6 +315,10 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
     resizeHide={true}
     wrapper="div"
   />
+  <VisualFeedback
+    isModalOpened={true}
+    modalState={[Function]}
+  />
   <div
     className="row account-row"
   >
@@ -285,7 +329,7 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
       className="col s7"
     >
       <h5
-        className="center-align"
+        className="col s10 center-align"
       >
         Add
         <span
@@ -386,6 +430,42 @@ exports[`<Test Component /> Radio button should respond to an onClick event 2`] 
               </label>
             </label>
           </div>
+          <div
+            className="role-inputs"
+          >
+            <div>
+                
+              <label
+                className="role-text span"
+              >
+                Select User Role 
+              </label>
+            </div>
+            <div>
+              <select
+                className="role-select"
+                name="role"
+                onChange={[Function]}
+                placeholder="Select "
+              >
+                <option
+                  value="developer"
+                >
+                  Developer
+                </option>
+                <option
+                  value="lead"
+                >
+                  Team Lead
+                </option>
+                <option
+                  value="member"
+                >
+                  Member
+                </option>
+              </select>
+            </div>
+          </div>
           <button
             className="btn account-btn"
             name="action"
@@ -476,6 +556,10 @@ exports[`<Test Component /> Should respond to an onChange event of search input 
     insecure={true}
     resizeHide={true}
     wrapper="div"
+  />
+  <VisualFeedback
+    isModalOpened={true}
+    modalState={[Function]}
   />
 </Fragment>
 `;
@@ -607,6 +691,10 @@ exports[`<Test Component /> should mount without crashing 1`] = `
     insecure={true}
     resizeHide={true}
     wrapper="div"
+  />
+  <VisualFeedback
+    isModalOpened={true}
+    modalState={[Function]}
   />
 </Fragment>
 `;
