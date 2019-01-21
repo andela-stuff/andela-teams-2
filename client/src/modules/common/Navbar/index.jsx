@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../../redux/actions/auth';
-import { createAdminRequest, checkUserRequest } from '../../../redux/actions/requests';
+import { makeRequest, checkUserRequest } from '../../../redux/actions/requests';
 import { warningMessage, successMessage } from '../../../toasts';
 import errorFormatter from '../../../utils/errorFormatter.json';
 import { clearRequestState } from '../../../redux/actions';
 
-class Navbar extends Component {
+export class Navbar extends Component {
   static propTypes = {
     signOut: PropTypes.func.isRequired,
-    createAdminRequest: PropTypes.func.isRequired,
+    makeRequest: PropTypes.func.isRequired,
     clearRequestState: PropTypes.func.isRequired,
     checkUserRequest: PropTypes.func.isRequired,
     auth: PropTypes.shape({
@@ -35,7 +35,8 @@ class Navbar extends Component {
     this.state = {
       showSearchBar: false,
       name: '',
-      timeout: 0
+      timeout: 0,
+      noOfRequests: 5
     };
     this.toggleState = this.toggleState.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -87,7 +88,7 @@ class Navbar extends Component {
 
   handleAdminRequest(event) {
     event.preventDefault();
-    this.props.createAdminRequest({ type: 'admin_request' });
+    this.props.makeRequest({ type: 'admin_request' });
   }
 
   toggleState(state) {
@@ -129,6 +130,7 @@ class Navbar extends Component {
             </NavLink>
             {showIcon && (
               <a
+                id="showSearchBar"
                 href="#!"
                 onClick={() => this.toggleState('showSearchBar')}
                 className=" float-right sidenav-trigger"
@@ -140,6 +142,7 @@ class Navbar extends Component {
               {this.props.showIcon && (
                 <li>
                   <a
+                    id="showSearchBar2"
                     href="#!"
                     onClick={() => this.toggleState('showSearchBar')}
                   >
@@ -191,13 +194,13 @@ class Navbar extends Component {
                 </NavLink>
               </li>
               <li className="notif-container">
-                <a href="#!">
+                <NavLink to="/requests/admin">
                   {/* Notifications */}
-                  <span className="notif-badge" />
+                  <span className="badge notif-badge">{this.state.noOfRequests}</span>
                   <i className="material-icons" data-tip="notifications">
                     notifications_active
                   </i>
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a
@@ -222,6 +225,7 @@ class Navbar extends Component {
               <ul className="tabs tabs-transparent">
                 <li className="tab">
                   <a
+                    className="projects"
                     href="#Projects"
                     onClick={event => switchContent(event, 'project')}
                   >
@@ -230,6 +234,7 @@ class Navbar extends Component {
                 </li>
                 <li className="tab">
                   <a
+                    className="members"
                     href="#members"
                     onClick={event => switchContent(event, 'member')}
                   >
@@ -238,6 +243,7 @@ class Navbar extends Component {
                 </li>
                 <li className="tab">
                   <a
+                    className="account"
                     href="#account"
                     onClick={event => switchContent(event, 'account')}
                   >
@@ -264,6 +270,7 @@ class Navbar extends Component {
                 </label>
                 {/* eslint-disable-next-line */}
                 <i
+                  id="showSearchBar3"
                   className="material-icons"
                   onClick={() => this.toggleState('showSearchBar')}
                 >
@@ -329,5 +336,5 @@ const mapStateToProps = ({ auth, requestsReducer }) => ({
 });
 
 export default connect(mapStateToProps, {
-  signOut, createAdminRequest, clearRequestState, checkUserRequest
+  signOut, makeRequest, clearRequestState, checkUserRequest
 })(Navbar);
